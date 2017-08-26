@@ -1,4 +1,4 @@
-package com.shoppingcart.services;
+package com.shoppingcart.app.services;
 
 import org.springframework.stereotype.Service;
 

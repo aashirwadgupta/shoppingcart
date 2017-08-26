@@ -1,4 +1,4 @@
-package com.shoppingcart.model;
+package com.shoppingcart.app.model;
 
 public class Reviews {
 	

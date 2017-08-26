@@ -1,4 +1,4 @@
-package com.shoppingcart.model;
+package com.shoppingcart.app.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

@@ -1,4 +1,4 @@
-package com.shoppingcart.model;
+package com.shoppingcart.app.model;
 
 import java.util.List;
 import java.util.Map;
