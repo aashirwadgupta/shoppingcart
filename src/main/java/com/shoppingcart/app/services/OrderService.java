@@ -6,12 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.shoppingcart.app.dao.OrderRepository;
+import com.shoppingcart.app.dao.UserRepository;
 import com.shoppingcart.app.model.Order;
+import com.shoppingcart.app.model.User;
 
 @Service
 public class OrderService {
@@ -23,14 +23,19 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepo;
 	
+	@Autowired
+	private UserRepository userRepo;
+	
 	public List<Order> getUserAllOrders(String userId){
-		return mongoTemplate.find(Query.query(new Criteria()
-                .elemMatch(Criteria.where("userId").regex(userId, "i"))), Order.class);
+		return userRepo.findOne(userId).getOrders();
 	}
 	
 	public String placeOrder(Order order){
 		try{
 			orderRepo.insert(order);
+			User user = userRepo.findOne(order.getUserId());
+			user.getOrders().add(order);
+			userRepo.save(user);
 			return "Success";
 		} catch(Exception e){
 			return "Error: Order Placing failed due to "+e.getMessage();

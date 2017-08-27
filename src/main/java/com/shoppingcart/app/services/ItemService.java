@@ -3,6 +3,7 @@ package com.shoppingcart.app.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -20,6 +21,6 @@ public class ItemService {
 		return mongoTemplate.find(Query.query(new Criteria()
                 .orOperator(Criteria.where("itemDesc").regex(text, "i"),
                         Criteria.where("itemName").regex(text, "i"))
-            ), Item.class);
+            ), Item.class, "items");
 	}
 }
