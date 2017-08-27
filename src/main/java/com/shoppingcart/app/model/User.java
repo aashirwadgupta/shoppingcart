@@ -21,7 +21,7 @@ public class User {
 	
 	private List<WishList> wishList;
 	
-	private List<Cart> cart;
+	private Cart cart;
 
 	public String getId() {
 		return id;
@@ -79,11 +79,11 @@ public class User {
 		this.wishList = wishList;
 	}
 
-	public List<Cart> getCart() {
+	public Cart getCart() {
 		return cart;
 	}
 
-	public void setCart(List<Cart> cart) {
+	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
 	

@@ -1,14 +1,15 @@
 package com.shoppingcart.app.model;
 
 import java.util.Date;
+import java.util.Map;
 
 public class Cart {
 	
 	private Date addedOn;
 	
-	private Item item;
+	private Map<String, CartItem> itemMap;
 	
-	private String status;
+	private String cartAmount;
 
 	public Date getAddedOn() {
 		return addedOn;
@@ -18,20 +19,20 @@ public class Cart {
 		this.addedOn = addedOn;
 	}
 
-	public Item getItem() {
-		return item;
+	public Map<String, CartItem> getItemMap() {
+		return itemMap;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItemMap(Map<String, CartItem> itemMap) {
+		this.itemMap = itemMap;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getCartAmount() {
+		return cartAmount;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setCartAmount(String cartAmount) {
+		this.cartAmount = cartAmount;
 	}
 	
 }

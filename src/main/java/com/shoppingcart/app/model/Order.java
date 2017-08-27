@@ -5,25 +5,27 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "orders")
 public class Order {
 
-	private String id;
-	
 	private String orderId;
+	
+	private String userId;
 	
 	private Item item;
 	
 	private String status;
 	
+	private int quantity;
+	
+	private String size;
+	
+	private String color;
+	
+	private String deliveryAddress;
+	
 	private String trackingId;
 	
 	private String feedback;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	
+	private String paymentMethod;
 
 	public String getOrderId() {
 		return orderId;
@@ -31,6 +33,14 @@ public class Order {
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public Item getItem() {
@@ -49,6 +59,38 @@ public class Order {
 		this.status = status;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getDeliveryAddress() {
+		return deliveryAddress;
+	}
+
+	public void setDeliveryAddress(String deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
+	}
+
 	public String getTrackingId() {
 		return trackingId;
 	}
@@ -63,6 +105,14 @@ public class Order {
 
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
+	}
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
 }

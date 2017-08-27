@@ -2,6 +2,8 @@ package com.shoppingcart.app.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shoppingcart.app.dao.UserRepository;
 import com.shoppingcart.app.model.User;
+import com.shoppingcart.app.services.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserRestController {
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserRestController.class);
 	@Autowired
 	private UserRepository userRepo; 
+	
+	@Autowired 
+	private UserService userService;
 	
 	@RequestMapping(value="/sayHello", method = RequestMethod.GET)
 	@ResponseBody
@@ -32,6 +38,13 @@ public class UserRestController {
 		return userRepo.findAll();
 	}
 	
+	@RequestMapping(value="/getUser", method = RequestMethod.GET)
+	@ResponseBody
+	public User getUser(@RequestParam("userId") String userId){
+		LOGGER.info("Fetching user with "+userId);
+		return userRepo.findOne(userId);
+	}
+	
 	@RequestMapping(value="/createUser", method = RequestMethod.POST)
 	@ResponseBody
 	public String createUser(@RequestBody User user){
@@ -39,7 +52,7 @@ public class UserRestController {
 			User createdUser = userRepo.insert(user);
 			return "User created with id as "+createdUser.getId();
 		} catch(Exception e) {
-			return "USer creation failed with an exception as "+e.getMessage();
+			return "User creation failed with an exception as "+e.getMessage();
 		}
 	}
 	
@@ -47,6 +60,12 @@ public class UserRestController {
 	@ResponseBody
 	public String doLogin(@RequestParam("username") String userName, @RequestParam("password") String password){
 		return "";
+	}
+	
+	@RequestMapping(value="/addAddress", method = RequestMethod.POST)
+	@ResponseBody
+	public String addAddress(@RequestBody String address, @RequestParam("userId") String userId, @RequestParam("type") String addressType){
+		return userService.updateAddress(address, userId, addressType);
 	}
 
 }
